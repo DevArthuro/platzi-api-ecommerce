@@ -1,3 +1,3 @@
 import api from "../";
 
-export const { useGetProductsQuery } = api;
+export const { useGetProductsIdsQuery, useGetProductByIdQuery } = api;

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { productsBuilder } from "./products/apiSlice";
+import { configureStore } from "@reduxjs/toolkit";
 
 const api = createApi({
   reducerPath: "api",
@@ -11,5 +12,9 @@ const api = createApi({
     ...productsBuilder(builder),
   }),
 });
+
+// const store = configureStore({
+//   reducer: {},
+// });
 
 export default api;

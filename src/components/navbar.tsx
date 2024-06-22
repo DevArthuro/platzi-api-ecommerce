@@ -15,7 +15,11 @@ import Image from "next/image";
 import { Stack } from "@mui/material";
 import Link from "next/link";
 import ImagePlatzi from "../../public/logo_platzi.png";
-import { pagesNav as pages, settingsUserNav as settings } from "@/utils";
+import {
+  pagesNav as pages,
+  settingsUserNav as settings,
+  router,
+} from "@/utils";
 
 const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -46,7 +50,7 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <AppBar position="static" sx={{ background: "#000" }}>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Link href="/">
+              <Link href={router.main}>
                 <Image
                   src={ImagePlatzi}
                   height={50}
@@ -85,7 +89,7 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   }}
                 >
                   {pages.map((page) => (
-                    <Link href={`/${page.id}`} key={page.id}>
+                    <Link href={page.route} key={page.id}>
                       <MenuItem>
                         <Typography textAlign="center">{page.name}</Typography>
                       </MenuItem>
@@ -96,8 +100,6 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Typography
                 variant="h5"
                 noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "none" },
@@ -109,13 +111,15 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   textDecoration: "none",
                 }}
               >
-                <Image
-                  src={ImagePlatzi}
-                  height={50}
-                  width={80}
-                  alt="logo-platzi"
-                  loading="lazy"
-                />
+                <Link href="/">
+                  <Image
+                    src={ImagePlatzi}
+                    height={50}
+                    width={80}
+                    alt="logo-platzi"
+                    loading="lazy"
+                  />
+                </Link>
               </Typography>
               <Box
                 sx={{
@@ -135,7 +139,7 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                       color: "white",
                       display: "block",
                     }}
-                    href={`/${page.id}`}
+                    href={page.route}
                   >
                     {page.name}
                   </Link>
@@ -172,7 +176,7 @@ const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <Link href={`/${setting.id}`} key={setting.id}>
+                    <Link href={setting.route} key={setting.id}>
                       <MenuItem>
                         <Typography textAlign="center">
                           {setting.name}

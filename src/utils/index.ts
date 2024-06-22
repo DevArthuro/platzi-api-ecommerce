@@ -1,1 +1,2 @@
-export { pagesNav, settingsUserNav } from "./navbar";
+export * from "./navbar";
+export * from "./routes";
